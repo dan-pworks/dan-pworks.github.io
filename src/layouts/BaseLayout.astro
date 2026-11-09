@@ -35,13 +35,27 @@ const isCurrent = (href: string) =>
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={socialTitle} />
     <meta name="twitter:description" content={description} />
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9055713029798041"
+     crossorigin="anonymous"></script>
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
     <header class="site-header">
       <div class="site-header__inner">
-        <a class="brand" href="/">Parra<span class="brand__dot">.</span>Works</a>
+        <a class="brand" href="/">
+          <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true" focusable="false">
+            <rect width="32" height="32" rx="8" fill="var(--color-accent)"></rect>
+            <path
+              d="M12 25V7h6.5a5.5 5.5 0 0 1 0 11H12"
+              fill="none"
+              stroke="var(--color-bg)"
+              stroke-width="3.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+          <span>Parra<span class="brand__dot">.</span>Works</span>
+        </a>
         <div class="header-actions">
           <nav aria-label="Primary">
             <a href="/" aria-current={isCurrent('/') ? 'page' : undefined}>Home</a>
@@ -135,9 +149,18 @@ const isCurrent = (href: string) =>
   }
 
   .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
     font-weight: 600;
     text-decoration: none;
     letter-spacing: -0.02em;
+  }
+
+  .brand__mark {
+    width: 1.75rem;
+    height: 1.75rem;
+    flex: none;
   }
 
   .brand__dot {
