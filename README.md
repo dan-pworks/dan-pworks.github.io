@@ -55,6 +55,7 @@ Resume/                        # Source resume files (About Me content)
 
 ## Recent changes
 
+- Added a Parra.Works logo mark to the header and reused it as the site favicon.
 - Added an animated AI workflow diagram to the home page and tightened section spacing.
 - Linked education schools to their websites and added flag icons to the Languages section.
 - Added the `squash_merge` skill and command, and centered the footer text.
