@@ -1,0 +1,129 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<BaseLayout
+  title="Blog"
+  description="Notes on software engineering, architecture, and building with AI from the work behind Parra.Works."
+>
+  <article class="blog">
+    <header class="intro">
+      <p class="eyebrow">Blog</p>
+      <h1>Writing about building software.</h1>
+      <p class="lede">
+        Notes on software engineering, architecture, and the tools and workflows behind Parra.Works.
+      </p>
+    </header>
+
+    {
+      posts.length > 0 ? (
+        <ol class="posts">
+          {posts.map((post) => (
+            <li class="post">
+              <h2>
+                <a href={`/blog/${post.id}/`}>- {post.data.title}</a>
+              </h2>
+              <p class="post__meta">
+                <time datetime={post.data.pubDate.toISOString()}>
+                  {post.data.pubDate.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
+                </time>
+              </p>
+              <p class="post__summary">{post.data.description}</p>
+            </li>
+          ))}
+        </ol>
+      ) : (
+        <p class="empty">No posts yet — new writing is on the way.</p>
+      )
+    }
+  </article>
+</BaseLayout>
+
+<style>
+  .blog {
+    max-width: 60rem;
+    margin-inline: auto;
+    padding-block: var(--space-16) var(--space-24);
+    animation: fade-up 600ms ease both;
+  }
+
+  .eyebrow {
+    margin: 0 0 var(--space-4);
+    color: var(--color-accent);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: var(--text-2xl);
+    letter-spacing: -0.04em;
+  }
+
+  .lede {
+    margin: var(--space-6) 0 0;
+    color: var(--color-muted);
+    font-size: var(--text-lg);
+  }
+
+  .posts {
+    display: grid;
+    gap: var(--space-8);
+    margin: var(--space-16) 0 0;
+    padding: var(--space-8) 0 0;
+    border-top: 1px solid var(--color-border);
+    list-style: none;
+  }
+
+  .post h2 {
+    margin: 0;
+    font-size: var(--text-lg);
+  }
+
+  .post__meta {
+    margin: var(--space-1) 0 var(--space-2);
+    color: var(--color-muted);
+    font-size: var(--text-sm);
+  }
+
+  .post__summary {
+    margin: 0;
+    color: var(--color-muted);
+  }
+
+  .empty {
+    margin: var(--space-16) 0 0;
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--color-border);
+    color: var(--color-muted);
+  }
+
+  @media (max-width: 40rem) {
+    .blog {
+      padding-block: var(--space-8) var(--space-16);
+    }
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(1rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
