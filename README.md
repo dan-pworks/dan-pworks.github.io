@@ -60,6 +60,7 @@ public/resources/              # Downloadable files referenced by posts
 
 ## Recent changes
 
+- Added a Tech Stack section to the home page: a centered carousel of eight tiles with semantic icons, resume-grounded summaries, and prev/next navigation.
 - Added a blog: nav link, listing and post detail pages backed by a markdown content collection, first post on building a Databricks study guide with an AI agent, and its downloadable study guide.
 - Added a Parra.Works logo mark to the header and reused it as the site favicon.
 - Added an animated AI workflow diagram to the home page and tightened section spacing.
