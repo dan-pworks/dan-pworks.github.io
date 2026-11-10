@@ -34,11 +34,16 @@ It defaults to `http://localhost:4321` for local development.
 
 ```text
 src/
+├── content.config.ts          # Content collections (blog) with frontmatter schema
+├── content/blog/              # Blog posts (markdown)
 ├── layouts/BaseLayout.astro   # Shared shell: head, SEO tags, header, footer, navigation
 ├── pages/index.astro          # Home page
 ├── pages/about.astro          # Resume-based About Me page
+├── pages/blog.astro           # Blog listing page
+├── pages/blog/[slug].astro    # Blog post detail pages
 └── styles/global.css          # Design tokens and global styles
 Resume/                        # Source resume files (About Me content)
+public/resources/              # Downloadable files referenced by posts
 .opencode/                     # Project skills and slash commands
 ```
 
@@ -55,6 +60,7 @@ Resume/                        # Source resume files (About Me content)
 
 ## Recent changes
 
+- Added a blog: nav link, listing and post detail pages backed by a markdown content collection, first post on building a Databricks study guide with an AI agent, and its downloadable study guide.
 - Added a Parra.Works logo mark to the header and reused it as the site favicon.
 - Added an animated AI workflow diagram to the home page and tightened section spacing.
 - Linked education schools to their websites and added flag icons to the Languages section.
