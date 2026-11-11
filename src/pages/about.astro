@@ -241,7 +241,7 @@ const profile = {
   <article class="about">
     <header class="intro">
       <p class="eyebrow">About Me</p>
-      <img src="/images/DP_Profile_01_BlueBG.png" width="200" style="object-fit: cover; clip-path: circle(40% at center);"/>
+      <img src="/images/DP_Profile_01_BlueBG.png" width="200" style="object-fit: cover; clip-path: circle(39% at center);"/>
       <h1>Daniel Parra</h1>
       <p class="role">Senior Software Architect | Principal Software Engineer</p>
       <p class="meta">
@@ -251,6 +251,12 @@ const profile = {
       <p class="summary">
         Senior Software Architect and Principal Java Engineer with 20+ years of experience designing enterprise Java and Spring Boot systems, micro-services, REST APIs, SQL data layers, CI/CD pipelines, and BI/reporting integrations. Brings 1 year of experience leveraging AI-powered coding assistants — including Copilot, Codex, and OpenCode — to accelerate new application features and automate pull request reviews and commits. Delivered architecture and engineering work across five enterprise organizations by modernizing legacy J2EE/Spring applications, standardizing API and data-access patterns, improving database performance, and leading cross-functional Agile delivery.
       </p>
+
+      <a class="scroll-hint" href="#skills-heading" aria-label="Scroll to the Core Skills section">
+        <svg viewBox="0 0 20 20" width="20" height="20" aria-hidden="true" focusable="false">
+          <path d="M4 7.5 10 13l6-5.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </a>
     </header>
 
     <section aria-labelledby="skills-heading">
@@ -397,6 +403,19 @@ const profile = {
     margin: var(--space-6) 0 0;
     color: var(--color-muted);
     font-size: var(--text-lg);
+  }
+
+  .scroll-hint {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--space-12);
+    color: var(--color-muted);
+  }
+
+  .scroll-hint svg {
+    width: 1.5rem;
+    height: 1.5rem;
+    animation: bob 2s ease-in-out infinite;
   }
 
   section {
@@ -551,6 +570,43 @@ const profile = {
   @media (max-width: 40rem) {
     .about {
       padding-block: var(--space-8) var(--space-16);
+    }
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    @supports (animation-timeline: view()) {
+      /* Zero-JS scroll reveal; content stays fully visible without support. */
+      .skill-group,
+      .education li,
+      .languages li,
+      .job {
+        animation: reveal-up cubic-bezier(0.22, 1, 0.36, 1) both;
+        animation-timeline: view();
+        animation-range: entry 5% entry 45%;
+      }
+
+      @keyframes reveal-up {
+        from {
+          opacity: 0;
+          transform: translateY(1.5rem);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    }
+  }
+
+  @keyframes bob {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+
+    50% {
+      transform: translateY(0.35rem);
     }
   }
 
