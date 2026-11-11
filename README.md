@@ -60,6 +60,7 @@ public/resources/              # Downloadable files referenced by posts
 
 ## Recent changes
 
+- Added a blog post "Can I leverage AI on-device?" on Apple's on-device AI versus cloud services, and fixed blog post dates displaying one day early by formatting them in UTC.
 - Removed the seasonal header animation from the top-center site header.
 - Added scroll-driven reveal animations to the About page sections and a scroll-down hint under the intro, with reduced-motion and older-browser fallbacks.
 - Added a Tech Stack section to the home page: a centered carousel of eight tiles with semantic icons, resume-grounded summaries, and prev/next navigation.
