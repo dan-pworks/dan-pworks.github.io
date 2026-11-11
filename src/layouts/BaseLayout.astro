@@ -1,6 +1,5 @@
 ---
 import '../styles/global.css';
-import SeasonScene from '../components/SeasonScene.astro';
 
 interface Props {
   title: string;
@@ -55,7 +54,6 @@ const isCurrent = (href: string) =>
           </svg>
           <span>Parra<span class="brand__dot">.</span>Works</span>
         </a>
-        <div class="season-slot"><SeasonScene /></div>
         <div class="header-actions">
           <nav aria-label="Primary">
             <a href="/" aria-current={isCurrent('/') ? 'page' : undefined}>Home</a>
@@ -142,15 +140,6 @@ const isCurrent = (href: string) =>
     width: min(100%, 70rem);
   }
 
-  .season-slot {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    height: 100%;
-    aspect-ratio: 3 / 2;
-    translate: -50% -50%;
-  }
-
   .header-actions {
     display: flex;
     align-items: center;
@@ -234,13 +223,6 @@ const isCurrent = (href: string) =>
   @media (max-width: 34rem) {
     .site-header__inner {
       row-gap: var(--space-3);
-    }
-
-    .season-slot {
-      position: static;
-      height: 2rem;
-      margin-left: auto;
-      translate: none;
     }
 
     .header-actions {

@@ -60,8 +60,8 @@ public/resources/              # Downloadable files referenced by posts
 
 ## Recent changes
 
+- Removed the seasonal header animation from the top-center site header.
 - Added scroll-driven reveal animations to the About page sections and a scroll-down hint under the intro, with reduced-motion and older-browser fallbacks.
-- Added a CSS-only seasonal header animation: a centered scene that plays shortly after load, holds its final frame, and replays on click.
 - Added a Tech Stack section to the home page: a centered carousel of eight tiles with semantic icons, resume-grounded summaries, and prev/next navigation.
 - Added a blog: nav link, listing and post detail pages backed by a markdown content collection, first post on building a Databricks study guide with an AI agent, and its downloadable study guide.
 - Added a Parra.Works logo mark to the header and reused it as the site favicon.
