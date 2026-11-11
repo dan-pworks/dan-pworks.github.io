@@ -1,0 +1,199 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('work');
+---
+
+<BaseLayout
+  title="My Work"
+  description="Open-source projects by Daniel Parra, from static-first Astro sites to reactive Spring Boot services, hosted on GitHub."
+>
+  <article class="work">
+    <header class="intro">
+      <p class="eyebrow">My Work</p>
+      <h1>Things I build and share.</h1>
+      <p class="lede">
+        A selection of projects published on GitHub, from web front ends to backend services.
+      </p>
+    </header>
+
+    {
+      projects.length > 0 ? (
+        <ul class="tiles">
+          {projects.map((project, index) => (
+            <li class="tile" style={`--i: ${index}`}>
+              <h2>
+                <a href={project.data.repo} target="_blank" rel="noopener noreferrer">
+                  {project.data.title}
+                  <svg
+                    class="tile__arrow"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M7 17L17 7M8 7h9v9" />
+                  </svg>
+                  <span class="visually-hidden">(opens in a new tab)</span>
+                </a>
+              </h2>
+              <p class="tile__summary">{project.data.description}</p>
+              <p class="tile__meta">
+                <span class="tile__language">{project.data.language}</span>
+              </p>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p class="empty">No projects yet — new work is on the way.</p>
+      )
+    }
+  </article>
+</BaseLayout>
+
+<style>
+  .work {
+    padding-block: var(--space-16) var(--space-24);
+    animation: fade-up 600ms ease both;
+  }
+
+  .eyebrow {
+    margin: 0 0 var(--space-4);
+    color: var(--color-accent);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: var(--text-2xl);
+    letter-spacing: -0.04em;
+  }
+
+  .lede {
+    margin: var(--space-6) 0 0;
+    color: var(--color-muted);
+    font-size: var(--text-lg);
+  }
+
+  .tiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+    gap: var(--space-6);
+    margin: var(--space-16) 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .tile {
+    display: grid;
+    align-content: start;
+    gap: var(--space-3);
+    padding: var(--space-8);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    background: var(--color-surface);
+    transition: border-color var(--transition), transform var(--transition);
+    animation: fade-up 500ms ease both;
+    animation-delay: calc(var(--i, 0) * 90ms);
+  }
+
+  .tile:hover {
+    border-color: var(--color-accent);
+    transform: translateY(-2px);
+  }
+
+  .tile h2 {
+    margin: 0;
+    font-size: var(--text-lg);
+    letter-spacing: -0.01em;
+  }
+
+  .tile h2 a {
+    text-decoration: none;
+  }
+
+  .tile__arrow {
+    width: 0.9em;
+    height: 0.9em;
+    margin-left: var(--space-2);
+    color: var(--color-muted);
+    transition: color var(--transition);
+  }
+
+  .tile h2 a:hover .tile__arrow {
+    color: var(--color-accent);
+  }
+
+  .tile__summary {
+    margin: 0;
+    color: var(--color-muted);
+  }
+
+  .tile__meta {
+    margin: 0;
+  }
+
+  .tile__language {
+    display: inline-block;
+    padding: 0 var(--space-3);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    color: var(--color-muted);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .empty {
+    margin: var(--space-16) 0 0;
+    padding-top: var(--space-8);
+    border-top: 1px solid var(--color-border);
+    color: var(--color-muted);
+  }
+
+  @media (max-width: 40rem) {
+    .work {
+      padding-block: var(--space-8) var(--space-16);
+    }
+
+    .tile {
+      padding: var(--space-6);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .tile {
+      animation-delay: 0ms;
+    }
+  }
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(1rem);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

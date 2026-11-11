@@ -26,7 +26,9 @@ const posts = (await getCollection('blog')).sort(
           {posts.map((post) => (
             <li class="post">
               <h2>
-                <a href={`/blog/${post.id}/`}>- {post.data.title}</a>
+                <a href={`/blog/${post.id}/`}>{post.data.title}
+                <svg style="width: .9em; height:.9em; margin: .1em 0 0 .4em;" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-astro-cid-r3bc3sjw=""><path d="M7 17L17 7M8 7h9v9" data-astro-cid-r3bc3sjw=""></path></svg>
+                </a>
               </h2>
               <p class="post__meta">
                 <time datetime={post.data.pubDate.toISOString()}>
