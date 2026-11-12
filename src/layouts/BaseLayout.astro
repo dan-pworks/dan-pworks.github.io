@@ -226,9 +226,19 @@ const isCurrent = (href: string) =>
       row-gap: var(--space-3);
     }
 
+    /* Dissolve the wrapper so social icons can sit in the brand row. */
     .header-actions {
+      display: contents;
+    }
+
+    .social-links {
+      order: 1;
+    }
+
+    nav {
+      order: 2;
+      justify-content: flex-start;
       width: 100%;
-      justify-content: space-between;
     }
   }
 
